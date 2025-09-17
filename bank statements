@@ -1,0 +1,335 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+// 1. MAIN BANKING SYSTEM CLASS
+public class BankingSystem {
+    public static void main(String[] args) {
+        System.out.println("==================================================");
+        System.out.println("               BANKING SYSTEM STATEMENT");
+        System.out.println("==================================================\n");
+        
+        // Create a new customer
+        Customer customer1 = new Customer("John", "Doe", "123 Main St, Gaborone", "ID12345");
+        System.out.println("CUSTOMER INFORMATION:");
+        System.out.println("Customer ID: " + customer1.getCustomerId());
+        System.out.println("Name: " + customer1.getFirstName() + " " + customer1.getSurname());
+        System.out.println("Address: " + customer1.getAddress());
+        System.out.println("ID Number: " + customer1.getIdNumber());
+        System.out.println("--------------------------------------------------");
+        
+        // Customer opens different accounts
+        System.out.println("\nACCOUNT OPENING TRANSACTIONS:");
+        
+        // Try to open Investment account with insufficient funds (should fail)
+        boolean investmentOpened = customer1.openAccount("Investment", "Main Branch", 400.0, null);
+        System.out.println("✓ Investment account opening with 400 BWP: " + (investmentOpened ? "APPROVED" : "DECLINED - Minimum 500 BWP required"));
+        
+        // Open Investment account with sufficient funds (should succeed)
+        investmentOpened = customer1.openAccount("Investment", "Main Branch", 1000.0, null);
+        System.out.println("✓ Investment account opening with 1000 BWP: " + (investmentOpened ? "APPROVED" : "DECLINED"));
+        
+        // Open Savings account
+        boolean savingsOpened = customer1.openAccount("Savings", "Main Branch", 200.0, null);
+        System.out.println("✓ Savings account opening with 200 BWP: " + (savingsOpened ? "APPROVED" : "DECLINED"));
+        
+        // Open Cheque account with employment details
+        EmploymentDetails empDetails = new EmploymentDetails("Tech Corp Botswana", "456 Tech Ave, Gaborone", "Software Developer");
+        boolean chequeOpened = customer1.openAccount("Cheque", "Main Branch", 500.0, empDetails);
+        System.out.println("✓ Cheque account opening with 500 BWP: " + (chequeOpened ? "APPROVED" : "DECLINED"));
+        
+        // Perform transactions
+        System.out.println("\nACCOUNT TRANSACTIONS:");
+        System.out.println("--------------------------------------------------");
+        
+        // Get references to accounts
+        Account investmentAcc = customer1.getAccounts().get(0); // Investment account
+        Account savingsAcc = customer1.getAccounts().get(1);    // Savings account
+        Account chequeAcc = customer1.getAccounts().get(2);     // Cheque account
+        
+        // Deposit to investment account
+        investmentAcc.deposit(300.0);
+        System.out.println("✓ Deposited 300.00 BWP to Investment Account");
+        
+        // Try to withdraw from savings (should fail)
+        boolean withdrawalResult = savingsAcc.withdraw(50.0);
+        if (!withdrawalResult) {
+            System.out.println("✗ Withdrawal from Savings Account: DECLINED - No withdrawals allowed");
+        }
+        
+        // Withdraw from investment account
+        withdrawalResult = investmentAcc.withdraw(200.0);
+        System.out.println("✓ Withdrew 200.00 BWP from Investment Account");
+        
+        // Deposit to cheque account
+        chequeAcc.deposit(1500.0);
+        System.out.println("✓ Deposited 1500.00 BWP to Cheque Account (Salary)");
+        
+        // Withdraw from cheque account
+        chequeAcc.withdraw(300.0);
+        System.out.println("✓ Withdrew 300.00 BWP from Cheque Account");
+        
+        // Try to withdraw more than balance
+        withdrawalResult = investmentAcc.withdraw(2000.0);
+        if (!withdrawalResult) {
+            System.out.println("✗ Withdrawal of 2000.00 BWP from Investment Account: DECLINED - Insufficient funds");
+        }
+        
+        // Calculate and apply monthly interest
+        System.out.println("\nINTEREST CALCULATION:");
+        System.out.println("--------------------------------------------------");
+        
+        double totalInterest = 0;
+        for (Account account : customer1.getAccounts()) {
+            if (account instanceof InterestBearing) {
+                double interest = ((InterestBearing) account).calculateInterest();
+                if (interest > 0) {
+                    account.deposit(interest);
+                    System.out.println("✓ Interest of " + String.format("%.2f", interest) + 
+                                      " BWP added to " + account.getAccountNumber() + 
+                                      " (" + account.getClass().getSimpleName() + ")");
+                    totalInterest += interest;
+                }
+            }
+        }
+        System.out.println("Total interest paid: " + String.format("%.2f", totalInterest) + " BWP");
+        
+        // Generate final bank statement
+        System.out.println("\n" + "="*60);
+        System.out.println("               FINAL BANK STATEMENT");
+        System.out.println("="*60);
+        
+        // Print statement date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+        System.out.println("Statement Date: " + dateFormat.format(new Date()));
+        System.out.println("-".repeat(60));
+        
+        customer1.displayAllAccounts();
+        
+        // Calculate total wealth
+        double totalBalance = 0;
+        for (Account account : customer1.getAccounts()) {
+            totalBalance += account.getBalance();
+        }
+        
+        System.out.println("-".repeat(60));
+        System.out.println("TOTAL BALANCE ACROSS ALL ACCOUNTS: " + 
+                          String.format("%.2f", totalBalance) + " BWP");
+        System.out.println("="*60);
+        System.out.println("Thank you for banking with us!");
+    }
+}
+
+// 2. INTERFACE FOR INTEREST-BEARING ACCOUNTS
+interface InterestBearing {
+    double calculateInterest();
+}
+
+// 3. CUSTOMER CLASS
+class Customer {
+    private String customerId;
+    private String firstName;
+    private String surname;
+    private String address;
+    private String idNumber;
+    private List<Account> accounts;
+    
+    private static int idCounter = 1000;
+    
+    public Customer(String firstName, String surname, String address, String idNumber) {
+        this.customerId = "CUST" + (idCounter++);
+        this.firstName = firstName;
+        this.surname = surname;
+        this.address = address;
+        this.idNumber = idNumber;
+        this.accounts = new ArrayList<>();
+    }
+    
+    public boolean openAccount(String accountType, String branch, double initialDeposit, EmploymentDetails empDetails) {
+        Account newAccount = null;
+        
+        try {
+            switch (accountType.toLowerCase()) {
+                case "savings":
+                    newAccount = new SavingsAccount(this, branch, initialDeposit);
+                    break;
+                case "investment":
+                    newAccount = new InvestmentAccount(this, branch, initialDeposit);
+                    break;
+                case "cheque":
+                    if (empDetails == null) {
+                        throw new IllegalArgumentException("Employment details required for cheque account");
+                    }
+                    newAccount = new ChequeAccount(this, branch, initialDeposit, empDetails);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown account type: " + accountType);
+            }
+            
+            if (newAccount != null) {
+                accounts.add(newAccount);
+                return true;
+            }
+        } catch (IllegalArgumentException e) {
+            // Error message is handled in the main method
+        }
+        
+        return false;
+    }
+    
+    public void displayAllAccounts() {
+        System.out.println("ACCOUNT SUMMARY FOR: " + firstName + " " + surname);
+        System.out.println("-".repeat(60));
+        System.out.printf("%-15s %-12s %-20s %-15s%n", "Account No.", "Type", "Branch", "Balance (BWP)");
+        System.out.println("-".repeat(60));
+        
+        for (Account account : accounts) {
+            String accountType = account.getClass().getSimpleName();
+            System.out.printf("%-15s %-12s %-20s %-15.2f%n", 
+                account.getAccountNumber(),
+                accountType,
+                account.getBranch(),
+                account.getBalance());
+        }
+    }
+    
+    // GETTER METHODS
+    public String getCustomerId() { return customerId; }
+    public String getFirstName() { return firstName; }
+    public String getSurname() { return surname; }
+    public String getAddress() { return address; }
+    public String getIdNumber() { return idNumber; }
+    public List<Account> getAccounts() { return new ArrayList<>(accounts); }
+}
+
+// 4. EMPLOYMENT DETAILS CLASS
+class EmploymentDetails {
+    private String companyName;
+    private String companyAddress;
+    private String position;
+    
+    public EmploymentDetails(String companyName, String companyAddress, String position) {
+        this.companyName = companyName;
+        this.companyAddress = companyAddress;
+        this.position = position;
+    }
+    
+    public String getCompanyName() { return companyName; }
+    public String getCompanyAddress() { return companyAddress; }
+    public String getPosition() { return position; }
+}
+
+// 5. ABSTRACT ACCOUNT CLASS
+abstract class Account {
+    protected String accountNumber;
+    protected double balance;
+    protected String branch;
+    protected Customer owner;
+    
+    private static int accountCounter = 10000;
+    
+    public Account(Customer owner, String branch, double initialDeposit) {
+        if (owner == null) {
+            throw new IllegalArgumentException("Account must have an owner");
+        }
+        if (!validateDeposit(initialDeposit)) {
+            throw new IllegalArgumentException("Invalid initial deposit amount: " + initialDeposit);
+        }
+        
+        this.accountNumber = "ACC" + (accountCounter++);
+        this.balance = initialDeposit;
+        this.branch = branch;
+        this.owner = owner;
+    }
+    
+    public boolean deposit(double amount) {
+        if (validateDeposit(amount)) {
+            balance += amount;
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean withdraw(double amount) {
+        if (validateWithdraw(amount)) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+    
+    protected boolean validateDeposit(double amount) {
+        return amount > 0;
+    }
+    
+    protected boolean validateWithdraw(double amount) {
+        return amount > 0 && amount <= balance;
+    }
+    
+    // GETTER METHODS
+    public String getAccountNumber() { return accountNumber; }
+    public double getBalance() { return balance; }
+    public String getBranch() { return branch; }
+    public Customer getOwner() { return owner; }
+}
+
+// 6. SAVINGS ACCOUNT CLASS
+class SavingsAccount extends Account implements InterestBearing {
+    private static final double INTEREST_RATE = 0.0005; // 0.05% monthly
+    
+    public SavingsAccount(Customer owner, String branch, double initialDeposit) {
+        super(owner, branch, initialDeposit);
+    }
+    
+    @Override
+    public boolean withdraw(double amount) {
+        return false; // No withdrawals allowed
+    }
+    
+    @Override
+    public double calculateInterest() {
+        return balance * INTEREST_RATE;
+    }
+}
+
+// 7. INVESTMENT ACCOUNT CLASS
+class InvestmentAccount extends Account implements InterestBearing {
+    private static final double INTEREST_RATE = 0.05; // 5% monthly
+    private static final double MIN_OPENING_BALANCE = 500.0;
+    
+    public InvestmentAccount(Customer owner, String branch, double initialDeposit) {
+        super(owner, branch, initialDeposit);
+        
+        if (initialDeposit < MIN_OPENING_BALANCE) {
+            throw new IllegalArgumentException("Investment account requires minimum " + 
+                MIN_OPENING_BALANCE + " BWP opening deposit");
+        }
+    }
+    
+    @Override
+    public double calculateInterest() {
+        return balance * INTEREST_RATE;
+    }
+}
+
+// 8. CHEQUE ACCOUNT CLASS
+class ChequeAccount extends Account implements InterestBearing {
+    private EmploymentDetails employmentDetails;
+    
+    public ChequeAccount(Customer owner, String branch, double initialDeposit, EmploymentDetails empDetails) {
+        super(owner, branch, initialDeposit);
+        this.employmentDetails = empDetails;
+        
+        if (empDetails == null) {
+            throw new IllegalArgumentException("Employment details are required for cheque account");
+        }
+    }
+    
+    @Override
+    public double calculateInterest() {
+        return 0.0; // No interest for cheque accounts
+    }
+    
+    public EmploymentDetails getEmploymentDetails() { return employmentDetails; }
+}
