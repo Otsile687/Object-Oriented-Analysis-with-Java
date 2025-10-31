@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+            prefHeight="500.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/23.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="CloseAccountController">
+   
+   <children>
+      <VBox spacing="15.0" alignment="CENTER" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <children>
+            <Label text="CLOSE ACCOUNT">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            
+            <!-- Important Information Box -->
+            <VBox spacing="8.0" style="-fx-border-color: #cc0000; -fx-border-width: 1; -fx-padding: 10; -fx-background-color: #ffe6e6;">
+               <children>
+                  <Label text="⚠️ Important Closure Information:" style="-fx-font-weight: bold; -fx-text-fill: #cc0000;" />
+                  <Label text="• Savings accounts can ONLY be withdrawn when closed" style="-fx-text-fill: #cc0000;" />
+                  <Label text="• Account closure is PERMANENT and cannot be reversed" style="-fx-text-fill: #cc0000;" />
+                  <Label text="• Each account can only be closed ONCE" style="-fx-text-fill: #cc0000;" />
+                  <Label text="• Final balance will be paid out upon closure" style="-fx-text-fill: #cc0000;" />
+               </children>
+            </VBox>
+            
+            <GridPane hgap="10.0" vgap="12.0">
+               <columnConstraints>
+                  <ColumnConstraints minWidth="120.0" />
+                  <ColumnConstraints minWidth="250.0" />
+               </columnConstraints>
+               
+               <children>
+                  <Label text="Account Type:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                  <ComboBox fx:id="accountTypeComboBox" GridPane.rowIndex="0" GridPane.columnIndex="1" promptText="Select account type" />
+                  
+                  <Label text="Account Number:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                  <TextField fx:id="accountNumberField" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="Enter account number" />
+                  
+                  <Label text="Customer ID:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                  <TextField fx:id="customerIdField" GridPane.rowIndex="2" GridPane.columnIndex="1" promptText="Enter customer ID" />
+               </children>
+            </GridPane>
+            
+            <HBox spacing="15.0" alignment="CENTER">
+               <children>
+                  <Button fx:id="closeAccountButton" text="Close Account & Withdraw" onAction="#handleCloseAccount" 
+                         style="-fx-background-color: #cc0000; -fx-text-fill: white; -fx-font-weight: bold;" />
+                  <Button fx:id="backButton" text="Back to Menu" onAction="#handleBack" />
+               </children>
+            </HBox>
+            
+            <Label fx:id="messageLabel" wrapText="true" maxWidth="450.0" 
+                   style="-fx-font-weight: bold; -fx-text-fill: #333333;" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

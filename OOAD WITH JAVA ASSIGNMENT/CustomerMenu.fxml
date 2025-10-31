@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="DebugCustomerMenuController"
+            prefHeight="400.0" prefWidth="600.0">
+   
+   <children>
+      <VBox spacing="20.0" alignment="TOP_CENTER" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <children>
+            <Label text="CUSTOMER MENU">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            
+            <HBox spacing="15.0" alignment="CENTER">
+               <children>
+                  <Button fx:id="checkBalanceButton" text="Check Balance" onAction="#handleCheckBalance" />
+                  <Button fx:id="withdrawButton" text="Withdraw" onAction="#handleWithdraw" />
+                  <Button fx:id="depositButton" text="Deposit" onAction="#handleDeposit" />
+                  <Button fx:id="transactionHistoryButton" text="Transaction History" onAction="#handleTransactionHistory" />
+                  <Button fx:id="logoutButton" text="Logout" onAction="#handleLogout" />
+               </children>
+            </HBox>
+            
+            <Label text="Recent Transactions:" />
+            <ListView fx:id="transactionListView" prefHeight="200.0" prefWidth="400.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

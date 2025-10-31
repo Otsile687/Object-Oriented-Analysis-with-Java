@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeMenuController">
+   <children>
+      <Label layoutX="300.0" layoutY="30.0" prefHeight="30.0" prefWidth="200.0" text="EMPLOYEE MENU">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      
+      <AnchorPane layoutX="20.0" layoutY="80.0" prefHeight="500.0" prefWidth="180.0" style="-fx-border-color: black; -fx-border-width: 1;">
+         <children>
+            <Button fx:id="addCustomerButton" layoutX="23.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="134.0" text="Add Customer" onAction="#handleAddCustomer" />
+            <Button fx:id="openAccountButton" layoutX="23.0" layoutY="110.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="134.0" text="Open Account" onAction="#handleOpenAccount" />
+            <Button fx:id="closeAccountButton" layoutX="23.0" layoutY="170.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="134.0" text="Close Account" onAction="#handleCloseAccount" />
+            <Button fx:id="viewCustomersButton" layoutX="23.0" layoutY="230.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="134.0" text="View Customers" onAction="#handleViewCustomers" />
+            <Button fx:id="logoutButton" layoutX="23.0" layoutY="400.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="134.0" text="Logout" onAction="#handleLogout" />
+         </children>
+      </AnchorPane>
+      
+      <Label layoutX="250.0" layoutY="80.0" text="Customer List:" />
+      <ListView fx:id="customerListView" layoutX="250.0" layoutY="110.0" prefHeight="400.0" prefWidth="500.0" />
+      <TextField fx:id="searchField" layoutX="250.0" layoutY="520.0" prefHeight="26.0" prefWidth="300.0" promptText="Search customers..." />
+   </children>
+</AnchorPane>

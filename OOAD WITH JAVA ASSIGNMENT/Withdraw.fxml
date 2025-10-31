@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="WithdrawController"
+            prefHeight="400.0" prefWidth="500.0">
+   
+   <children>
+      <VBox spacing="20.0" alignment="CENTER" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <children>
+            <Label text="WITHDRAW MONEY">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            
+            <GridPane hgap="10.0" vgap="15.0">
+               <columnConstraints>
+                  <ColumnConstraints minWidth="120.0" />
+                  <ColumnConstraints minWidth="200.0" />
+               </columnConstraints>
+               
+               <children>
+                  <Label text="Account Type:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                  <ComboBox fx:id="accountTypeComboBox" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                  
+                  <Label text="Account Number:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                  <TextField fx:id="accountNumberField" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                  
+                  <Label text="Amount:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                  <TextField fx:id="amountField" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+            
+            <HBox spacing="20.0" alignment="CENTER">
+               <children>
+                  <Button fx:id="withdrawButton" text="Withdraw" onAction="#handleWithdraw" />
+                  <Button fx:id="backButton" text="Back to Menu" onAction="#handleBack" />
+               </children>
+            </HBox>
+            
+            <Label fx:id="messageLabel" wrapText="true" maxWidth="400.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
