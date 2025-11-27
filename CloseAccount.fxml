@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+            prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="CloseAccountController" 
+            style="-fx-background-color: #dbeafe;">
+   
+   <children>
+      <!-- Header -->
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1e3a8a" height="60.0" layoutX="0.0" 
+                 layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+      
+      <Label layoutX="300.0" layoutY="15.0" text="CLOSE ACCOUNT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      
+      <!-- Warning Box -->
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#fef2f2" height="60.0" layoutX="100.0" 
+                 layoutY="80.0" stroke="#dc2626" strokeWidth="2.0" width="600.0" />
+      
+      <Label layoutX="150.0" layoutY="100.0" prefWidth="500.0" 
+             text="⚠️ WARNING: This action will permanently close the account!" 
+             style="-fx-text-fill: #dc2626; -fx-font-weight: bold;" />
+      
+      <!-- Form Container -->
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="250.0" layoutX="200.0" 
+                 layoutY="160.0" stroke="#1e3a8a" strokeWidth="1.0" width="400.0" />
+      
+      <!-- Account Number -->
+      <Label layoutX="220.0" layoutY="190.0" text="Account Number:" textFill="#374151" />
+      <TextField fx:id="accountNumberField" layoutX="340.0" layoutY="186.0" prefWidth="200.0" 
+                 promptText="Enter account number" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <!-- Buttons -->
+      <Button fx:id="closeAccountButton" layoutX="250.0" layoutY="250.0" mnemonicParsing="false" 
+              prefHeight="35.0" prefWidth="120.0" text="Close Account" onAction="#handleCloseAccount" 
+              style="-fx-background-color: #dc2626; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" />
+      
+      <Button fx:id="backButton" layoutX="400.0" layoutY="250.0" mnemonicParsing="false" 
+              prefHeight="35.0" prefWidth="120.0" text="Back to Menu" onAction="#handleBack" 
+              style="-fx-background-color: #1e3a8a; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" />
+      
+      <!-- Message Label -->
+      <Label fx:id="messageLabel" layoutX="150.0" layoutY="430.0" prefWidth="500.0" 
+             style="-fx-alignment: center; -fx-text-fill: #374151;" />
+   </children>
+</AnchorPane>

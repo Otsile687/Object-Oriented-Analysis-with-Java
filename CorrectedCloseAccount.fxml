@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+            prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="CloseAccountController">
+   <children>
+      <!-- Title -->
+      <Label layoutX="300.0" layoutY="30.0" prefHeight="30.0" prefWidth="200.0" text="CLOSE ACCOUNT">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      
+      <!-- Warning Message -->
+      <Label layoutX="150.0" layoutY="80.0" prefWidth="500.0" 
+             text="⚠️ IMPORTANT: Savings accounts can ONLY be withdrawn when closed. This action is PERMANENT!" 
+             style="-fx-text-fill: #cc0000; -fx-font-weight: bold;" />
+      
+      <!-- Account Type -->
+      <Label layoutX="250.0" layoutY="130.0" text="Account Type:" />
+      <ComboBox fx:id="accountTypeComboBox" layoutX="350.0" layoutY="126.0" prefWidth="150.0" 
+                promptText="Select account type" />
+      
+      <!-- Account Number -->
+      <Label layoutX="250.0" layoutY="180.0" text="Account Number:" />
+      <TextField fx:id="accountNumberField" layoutX="370.0" layoutY="176.0" prefWidth="200.0" 
+                 promptText="Enter account number" />
+      
+      <!-- Customer ID -->
+      <Label layoutX="250.0" layoutY="230.0" text="Customer ID:" />
+      <TextField fx:id="customerIdField" layoutX="340.0" layoutY="226.0" prefWidth="200.0" 
+                 promptText="Enter customer ID" />
+      
+      <!-- Current Balance Display -->
+      <Label layoutX="250.0" layoutY="280.0" text="Current Balance:" />
+      <Label fx:id="balanceLabel" layoutX="350.0" layoutY="280.0" prefWidth="150.0" text="$0.00" 
+             style="-fx-font-weight: bold;" />
+      
+      <!-- Withdrawal Amount (for savings accounts) -->
+      <Label layoutX="250.0" layoutY="330.0" text="Withdrawal Amount:" />
+      <TextField fx:id="withdrawalAmountField" layoutX="370.0" layoutY="326.0" prefWidth="200.0" 
+                 promptText="Enter amount to withdraw" disable="true" />
+      
+      <!-- Buttons -->
+      <Button fx:id="closeAccountButton" layoutX="300.0" layoutY="390.0" mnemonicParsing="false" 
+              prefWidth="180.0" text="Close Account & Withdraw" onAction="#handleCloseAccount" 
+              style="-fx-background-color: #cc0000; -fx-text-fill: white; -fx-font-weight: bold;" />
+      
+      <Button fx:id="verifyButton" layoutX="300.0" layoutY="440.0" mnemonicParsing="false" 
+              prefWidth="180.0" text="Verify Account" onAction="#handleVerifyAccount" />
+      
+      <Button fx:id="backButton" layoutX="300.0" layoutY="490.0" mnemonicParsing="false" 
+              prefWidth="180.0" text="Back to Menu" onAction="#handleBack" />
+      
+      <!-- Message Label -->
+      <Label fx:id="messageLabel" layoutX="150.0" layoutY="540.0" prefWidth="500.0" 
+             style="-fx-alignment: center;" />
+   </children>
+</AnchorPane>

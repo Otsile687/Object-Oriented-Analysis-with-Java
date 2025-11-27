@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+            prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateCustomerController" 
+            style="-fx-background-color: #dbeafe;">
+   
+   <children>
+      <!-- Header -->
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1e3a8a" height="60.0" layoutX="0.0" 
+                 layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+      
+      <Label layoutX="280.0" layoutY="15.0" text="CREATE NEW CUSTOMER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      
+      <!-- Form Container -->
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="450.0" layoutX="100.0" 
+                 layoutY="80.0" stroke="#1e3a8a" strokeWidth="1.0" width="600.0" />
+      
+      <!-- Form Fields -->
+      <Label layoutX="150.0" layoutY="110.0" text="Customer Type:" textFill="#374151" />
+      <ComboBox fx:id="customerTypeComboBox" layoutX="270.0" layoutY="106.0" prefWidth="200.0" 
+                promptText="Select type" 
+                style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <Label layoutX="150.0" layoutY="160.0" text="Full Name:" textFill="#374151" />
+      <TextField fx:id="nameField" layoutX="230.0" layoutY="156.0" prefWidth="300.0" 
+                 promptText="Enter full name" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <Label layoutX="150.0" layoutY="210.0" text="Customer ID:" textFill="#374151" />
+      <TextField fx:id="idField" layoutX="240.0" layoutY="206.0" prefWidth="200.0" 
+                 promptText="Enter customer ID" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <Label layoutX="150.0" layoutY="260.0" text="Phone Number:" textFill="#374151" />
+      <TextField fx:id="phoneField" layoutX="260.0" layoutY="256.0" prefWidth="200.0" 
+                 promptText="Enter phone number" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <Label layoutX="150.0" layoutY="310.0" text="Address:" textFill="#374151" />
+      <TextField fx:id="addressField" layoutX="220.0" layoutY="306.0" prefWidth="300.0" 
+                 promptText="Enter address" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <Label layoutX="150.0" layoutY="360.0" text="Age:" textFill="#374151" />
+      <TextField fx:id="ageField" layoutX="190.0" layoutY="356.0" prefWidth="100.0" 
+                 promptText="Enter age" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <Label layoutX="320.0" layoutY="360.0" text="Gender:" textFill="#374151" />
+      <TextField fx:id="genderField" layoutX="380.0" layoutY="356.0" prefWidth="100.0" 
+                 promptText="Enter gender" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <Label layoutX="500.0" layoutY="360.0" text="Occupation:" textFill="#374151" />
+      <TextField fx:id="occupationField" layoutX="580.0" layoutY="356.0" prefWidth="100.0" 
+                 promptText="Enter occupation" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <!-- Buttons -->
+      <Button fx:id="createButton" layoutX="250.0" layoutY="420.0" mnemonicParsing="false" 
+              prefHeight="35.0" prefWidth="120.0" text="Create Customer" onAction="#handleCreate" 
+              style="-fx-background-color: #059669; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" />
+      
+      <Button fx:id="backButton" layoutX="400.0" layoutY="420.0" mnemonicParsing="false" 
+              prefHeight="35.0" prefWidth="120.0" text="Back to Menu" onAction="#handleBack" 
+              style="-fx-background-color: #1e3a8a; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" />
+      
+      <!-- Message Label -->
+      <Label fx:id="messageLabel" layoutX="150.0" layoutY="480.0" prefWidth="500.0" 
+             style="-fx-alignment: center; -fx-text-fill: #374151;" />
+   </children>
+</AnchorPane>

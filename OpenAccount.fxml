@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+            prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="OpenAccountController" 
+            style="-fx-background-color: #dbeafe;">
+   
+   <children>
+      <!-- Header -->
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1e3a8a" height="60.0" layoutX="0.0" 
+                 layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+      
+      <Label layoutX="300.0" layoutY="15.0" text="OPEN NEW ACCOUNT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      
+      <!-- Form Container -->
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="400.0" layoutX="100.0" 
+                 layoutY="80.0" stroke="#1e3a8a" strokeWidth="1.0" width="600.0" />
+      
+      <!-- Account Type -->
+      <Label layoutX="150.0" layoutY="110.0" text="Account Type:" textFill="#374151" />
+      <ComboBox fx:id="accountTypeComboBox" layoutX="260.0" layoutY="106.0" prefWidth="200.0" 
+                promptText="Select account type" 
+                style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <!-- Customer ID -->
+      <Label layoutX="150.0" layoutY="160.0" text="Customer ID:" textFill="#374151" />
+      <TextField fx:id="customerIdField" layoutX="250.0" layoutY="156.0" prefWidth="200.0" 
+                 promptText="Enter customer ID" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <!-- Account Number -->
+      <Label layoutX="150.0" layoutY="210.0" text="Account Number:" textFill="#374151" />
+      <TextField fx:id="accountNumberField" layoutX="270.0" layoutY="206.0" prefWidth="200.0" 
+                 promptText="Enter account number" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <!-- Interest Rate (for Savings) -->
+      <Label layoutX="150.0" layoutY="260.0" text="Interest Rate:" textFill="#374151" />
+      <TextField fx:id="interestRateField" layoutX="250.0" layoutY="256.0" prefWidth="200.0" 
+                 promptText="Optional - enter rate (e.g., 0.025)" disable="true" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: #f3f4f6;" />
+      
+      <!-- Overdraft Limit (for Checking) -->
+      <Label layoutX="150.0" layoutY="310.0" text="Overdraft Limit:" textFill="#374151" />
+      <TextField fx:id="overdraftField" layoutX="260.0" layoutY="306.0" prefWidth="200.0" 
+                 promptText="Optional - enter limit amount" disable="true" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: #f3f4f6;" />
+      
+      <!-- Return Rate (for Investment) -->
+      <Label layoutX="150.0" layoutY="360.0" text="Expected Return Rate:" textFill="#374151" />
+      <TextField fx:id="returnRateField" layoutX="300.0" layoutY="356.0" prefWidth="200.0" 
+                 promptText="Optional - enter rate (e.g., 0.05)" disable="true" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: #f3f4f6;" />
+      
+      <!-- Buttons -->
+      <Button fx:id="createAccountButton" layoutX="250.0" layoutY="420.0" mnemonicParsing="false" 
+              prefHeight="35.0" prefWidth="140.0" text="Create Account" onAction="#handleCreateAccount" 
+              style="-fx-background-color: #059669; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" />
+      
+      <Button fx:id="backButton" layoutX="410.0" layoutY="420.0" mnemonicParsing="false" 
+              prefHeight="35.0" prefWidth="140.0" text="Back to Menu" onAction="#handleBack" 
+              style="-fx-background-color: #1e3a8a; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" />
+      
+      <!-- Message Label -->
+      <Label fx:id="messageLabel" layoutX="150.0" layoutY="480.0" prefWidth="500.0" 
+             style="-fx-alignment: center; -fx-text-fill: #374151;" />
+      
+      <!-- Info Note -->
+      <Label layoutX="200.0" layoutY="520.0" text="Note: All accounts are created with $0.00 initial balance" 
+             style="-fx-text-fill: #059669; -fx-font-weight: bold; -fx-font-size: 12;" />
+   </children>
+</AnchorPane>s

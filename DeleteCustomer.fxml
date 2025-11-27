@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+            prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="DeleteCustomerController" 
+            style="-fx-background-color: #dbeafe;">
+   
+   <children>
+      <!-- Header -->
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1e3a8a" height="60.0" layoutX="0.0" 
+                 layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+      
+      <Label layoutX="280.0" layoutY="15.0" text="DELETE CUSTOMER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      
+      <!-- Warning Box -->
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#fef2f2" height="60.0" layoutX="100.0" 
+                 layoutY="80.0" stroke="#dc2626" strokeWidth="2.0" width="600.0" />
+      
+      <Label layoutX="150.0" layoutY="100.0" prefWidth="500.0" 
+             text="⚠️ WARNING: This action will permanently delete customer data!" 
+             style="-fx-text-fill: #dc2626; -fx-font-weight: bold;" />
+      
+      <!-- Form Container -->
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="300.0" layoutX="150.0" 
+                 layoutY="160.0" stroke="#1e3a8a" strokeWidth="1.0" width="500.0" />
+      
+      <!-- Customer ID -->
+      <Label layoutX="180.0" layoutY="190.0" text="Customer ID:" textFill="#374151" />
+      <TextField fx:id="customerIdField" layoutX="280.0" layoutY="186.0" prefWidth="200.0" 
+                 promptText="Enter customer ID" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <!-- Customer Name -->
+      <Label layoutX="170.0" layoutY="240.0" text="Customer Name:" textFill="#374151" />
+      <TextField fx:id="customerNameField" layoutX="280.0" layoutY="236.0" prefWidth="200.0" 
+                 promptText="Enter customer name" 
+                 style="-fx-border-color: #1e3a8a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      
+      <!-- Buttons -->
+      <Button fx:id="verifyButton" layoutX="200.0" layoutY="290.0" mnemonicParsing="false" 
+              prefHeight="35.0" prefWidth="120.0" text="Verify Customer" onAction="#handleVerifyCustomer" 
+              style="-fx-background-color: #1e3a8a; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" />
+      
+      <Button fx:id="deleteButton" layoutX="340.0" layoutY="290.0" mnemonicParsing="false" 
+              prefHeight="35.0" prefWidth="120.0" text="Delete Customer" onAction="#handleDeleteCustomer" 
+              style="-fx-background-color: #dc2626; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" />
+      
+      <Button fx:id="backButton" layoutX="480.0" layoutY="290.0" mnemonicParsing="false" 
+              prefHeight="35.0" prefWidth="120.0" text="Back to Menu" onAction="#handleBack" 
+              style="-fx-background-color: #6b7280; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" />
+      
+      <!-- Customer Info Display -->
+      <Label fx:id="customerInfoLabel" layoutX="180.0" layoutY="340.0" prefWidth="400.0" 
+             style="-fx-font-weight: bold; -fx-text-fill: #374151;" />
+      
+      <!-- Message Label -->
+      <Label fx:id="messageLabel" layoutX="150.0" layoutY="480.0" prefWidth="500.0" 
+             style="-fx-alignment: center; -fx-text-fill: #374151;" />
+   </children>
+</AnchorPane>
